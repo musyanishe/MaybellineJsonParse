@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet var collectionView: UICollectionView!
     
     private var maybellineManager = NetworkMaybellineManager()
-    private var maybellines: [MaybellineData] = []
+    private var maybellines: [Maybelline] = []
     private let cellScale: CGFloat = 0.6
     
     override func viewDidLoad() {

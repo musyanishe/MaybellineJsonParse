@@ -14,12 +14,12 @@ class MaybellineCollectionViewCell: UICollectionViewCell {
     @IBOutlet var priceLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
     
-    func configure(with maybelline: MaybellineData) {
-        nameLabel.text = maybelline.name
-        priceLabel.text = maybelline.price
-        descriptionLabel.text = maybelline.description
+    func configure(with maybelline: Maybelline) {
+        nameLabel.text = maybelline.nameOfProduct
+        priceLabel.text = maybelline.priceOfProduct
+        descriptionLabel.text = maybelline.descriptionOfProduct
         
-        guard let url = URL(string: maybelline.image_link) else { return }
+        guard let url = URL(string: maybelline.imageOfProduct) else { return }
         URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data else {
                 print(error?.localizedDescription ?? "No description found")
