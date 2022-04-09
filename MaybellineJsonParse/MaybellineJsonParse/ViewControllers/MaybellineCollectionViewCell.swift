@@ -19,13 +19,12 @@ class MaybellineCollectionViewCell: UICollectionViewCell {
         priceLabel.text = maybelline.price
         descriptionLabel.text = maybelline.description
         
-        guard let url = URL(string: maybelline.image_link) else { return }
+        guard let url = URL(string: maybelline.image_link ?? "") else { return }
         URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data else {
                 print(error?.localizedDescription ?? "No description found")
                 return
             }
-            
             DispatchQueue.main.async {
                 self.imageLink.image = UIImage(data: data)
             }

@@ -25,13 +25,19 @@ class MaybellineCollectionViewController: UICollectionViewController {
 //        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
 //        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
 //        collectionView.contentInset = UIEdgeInsets(top: insertY, left: insertX, bottom: insertY, right: insertX)
-        
-        NetworkMaybellineManager.shared.fetchMaybellineInfo(from: NetworkMaybellineManager.shared.urlAPI) { maybellines, error in
-            DispatchQueue.main.async {
-                self.maybellines = maybellines ?? []
-                self.collectionView.reloadData()
+    
+        NetworkMaybellineManager.shared.fetchMaybellineInfo(from: NetworkMaybellineManager.shared.urlAPI) { result in
+            switch result {
+            case .success(let maybellines):
+                DispatchQueue.main.async {
+                    self.maybellines = maybellines
+                    self.collectionView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
             }
         }
+        
         
         // MARK: - UICollectionViewDataSource
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

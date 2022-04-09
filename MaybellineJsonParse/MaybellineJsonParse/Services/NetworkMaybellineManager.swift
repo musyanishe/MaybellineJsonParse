@@ -9,23 +9,28 @@ import Foundation
 
 struct NetworkMaybellineManager {
     
+    enum Result<Success, Error: Swift.Error> {
+        case success(Success)
+        case failure(Error)
+    }
+    
     static let shared = NetworkMaybellineManager()
     
     let urlAPI = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline"
     
-    func fetchMaybellineInfo(from url: String, completion: @escaping ([Maybelline]?, Error?) -> ()) {
+    func fetchMaybellineInfo(from url: String, completion: @escaping (Result<[Maybelline], Error>) -> ()) {
         guard let url = URL(string: urlAPI) else { return }
         URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data else {
-                print(error?.localizedDescription ?? "No errors")
+                completion(.failure(error!))
                 return
             }
             do {
-                let maybs = try JSONDecoder().decode([Maybelline].self, from: data)
-                completion(maybs, nil)
-            } catch let error {
-                completion(nil, error)
-                print(error)
+                guard let maybs = try? JSONDecoder().decode([Maybelline].self, from: data) else {
+                    completion(.failure(error!))
+                    return
+                }
+                completion(.success(maybs))
             }
         }.resume()
     }

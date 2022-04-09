@@ -8,8 +8,8 @@
 import Foundation
 
 struct Maybelline: Decodable {
-    let name: String
-    let image_link: String
-    let description: String
-    let price: String
+    let name: String?
+    let image_link: String?
+    let description: String?
+    let price: String?
 }
