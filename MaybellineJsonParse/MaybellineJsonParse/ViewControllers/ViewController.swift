@@ -11,8 +11,8 @@ class ViewController: UIViewController {
     
     @IBOutlet var collectionView: UICollectionView!
     
-//    var maybelline: Maybelline
-    
+    private let maybelline = NetworkMaybellineManager()
+    private var maybellines: [MaybellineData] = []
     private let cellScale: CGFloat = 0.6
     
     override func viewDidLoad() {
@@ -28,29 +28,32 @@ class ViewController: UIViewController {
         layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
         collectionView.contentInset = UIEdgeInsets(top: insertY, left: insertX, bottom: insertY, right: insertX)
         
-//        collectionView.dataSource = self
+        collectionView.dataSource = self
+        
+        maybelline.fetchMaybellineInfo()
     }
+    
+
 }
 
 
     //MARK: - UICollectionViewDataSource
-//extension ViewController: UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MaybellineCollectionViewCell", for: indexPath) as! MaybellineCollectionViewCell
-//        let maybellines = maybelline[indexPath.item]
-//        cell.maybellines = maybellines
-//
-//        return cell
-//    }
-//
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        1
-//    }
-//}
+extension ViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        maybellines.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MaybellineCollectionViewCell
+        let maybs = maybellines[indexPath.item]
+        cell.configure(with: maybs)
+        return cell
+    }
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        1
+    }
+}
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
