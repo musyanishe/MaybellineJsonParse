@@ -8,20 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		CE423F6628017AC70064F00D /* NetworkMaybellineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE423F6528017AC70064F00D /* NetworkMaybellineManager.swift */; };
-		CE423F682801A4D10064F00D /* Maybelline.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE423F672801A4D10064F00D /* Maybelline.swift */; };
 		CEAE7C162800DB1400D16D0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE7C152800DB1400D16D0A /* AppDelegate.swift */; };
 		CEAE7C182800DB1400D16D0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE7C172800DB1400D16D0A /* SceneDelegate.swift */; };
 		CEAE7C1D2800DB1400D16D0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAE7C1B2800DB1400D16D0A /* Main.storyboard */; };
 		CEAE7C1F2800DB1700D16D0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEAE7C1E2800DB1700D16D0A /* Assets.xcassets */; };
 		CEAE7C222800DB1700D16D0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEAE7C202800DB1700D16D0A /* LaunchScreen.storyboard */; };
-		CEAE7C2E2800E34D00D16D0A /* MaybellineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE7C2D2800E34D00D16D0A /* MaybellineData.swift */; };
 		CEAE7C302800E70500D16D0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE7C2F2800E70500D16D0A /* ViewController.swift */; };
 		CEAE7C322800E78E00D16D0A /* MaybellineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAE7C312800E78E00D16D0A /* MaybellineCollectionViewCell.swift */; };
+		CECDFA5B2801F43E001C5A30 /* Maybelline.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECDFA5A2801F43E001C5A30 /* Maybelline.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CE423F6528017AC70064F00D /* NetworkMaybellineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMaybellineManager.swift; sourceTree = "<group>"; };
-		CE423F672801A4D10064F00D /* Maybelline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Maybelline.swift; sourceTree = "<group>"; };
 		CEAE7C122800DB1400D16D0A /* MaybellineJsonParse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaybellineJsonParse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEAE7C152800DB1400D16D0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEAE7C172800DB1400D16D0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,9 +27,9 @@
 		CEAE7C1E2800DB1700D16D0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEAE7C212800DB1700D16D0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEAE7C232800DB1700D16D0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEAE7C2D2800E34D00D16D0A /* MaybellineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaybellineData.swift; sourceTree = "<group>"; };
 		CEAE7C2F2800E70500D16D0A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CEAE7C312800E78E00D16D0A /* MaybellineCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaybellineCollectionViewCell.swift; sourceTree = "<group>"; };
+		CECDFA5A2801F43E001C5A30 /* Maybelline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Maybelline.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +62,7 @@
 		CEAE7C142800DB1400D16D0A /* MaybellineJsonParse */ = {
 			isa = PBXGroup;
 			children = (
+				CECDFA592801F41F001C5A30 /* Services */,
 				CEAE7C2C2800E31000D16D0A /* Models */,
 				CEAE7C2A2800DCC800D16D0A /* ViewControllers */,
 				CEAE7C292800DCAB00D16D0A /* Views */,
@@ -104,11 +103,17 @@
 		CEAE7C2C2800E31000D16D0A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CEAE7C2D2800E34D00D16D0A /* MaybellineData.swift */,
-				CE423F6528017AC70064F00D /* NetworkMaybellineManager.swift */,
-				CE423F672801A4D10064F00D /* Maybelline.swift */,
+				CECDFA5A2801F43E001C5A30 /* Maybelline.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CECDFA592801F41F001C5A30 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CE423F6528017AC70064F00D /* NetworkMaybellineManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,12 +187,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEAE7C2E2800E34D00D16D0A /* MaybellineData.swift in Sources */,
 				CEAE7C162800DB1400D16D0A /* AppDelegate.swift in Sources */,
+				CECDFA5B2801F43E001C5A30 /* Maybelline.swift in Sources */,
 				CE423F6628017AC70064F00D /* NetworkMaybellineManager.swift in Sources */,
 				CEAE7C322800E78E00D16D0A /* MaybellineCollectionViewCell.swift in Sources */,
 				CEAE7C302800E70500D16D0A /* ViewController.swift in Sources */,
-				CE423F682801A4D10064F00D /* Maybelline.swift in Sources */,
 				CEAE7C182800DB1400D16D0A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

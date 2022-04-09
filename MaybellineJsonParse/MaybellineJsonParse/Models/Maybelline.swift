@@ -7,16 +7,9 @@
 
 import Foundation
 
-struct Maybelline {
-    let nameOfProduct: String
-    let imageOfProduct: String
-    let descriptionOfProduct: String
-    let priceOfProduct: String
-    
-    init?(maybellineData: MaybellineData) {
-        nameOfProduct = maybellineData.name
-        imageOfProduct = maybellineData.image_link
-        descriptionOfProduct = maybellineData.description
-        priceOfProduct = maybellineData.price
-    }
+struct Maybelline: Decodable {
+    let name: String
+    let image_link: String
+    let description: String
+    let price: String
 }

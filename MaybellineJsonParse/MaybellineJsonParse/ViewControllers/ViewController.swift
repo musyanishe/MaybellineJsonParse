@@ -30,9 +30,7 @@ class ViewController: UIViewController {
         
         collectionView.dataSource = self
         
-//        maybellineManager.onCompletion = { maybelline in
-//
-//        }
+    
 
         maybellineManager.fetchMaybellineInfo()
     }
