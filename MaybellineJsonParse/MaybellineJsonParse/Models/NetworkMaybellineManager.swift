@@ -9,7 +9,7 @@ import Foundation
 
 struct NetworkMaybellineManager {
     
-    private var onCompletion: ((Maybelline) -> Void)?
+    var onCompletion: ((Maybelline) -> Void)?
     
     func fetchMaybellineInfo() {
         guard let url = URL(string: "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline") else { return }
@@ -31,7 +31,7 @@ struct NetworkMaybellineManager {
                 return nil
             }
             return maybelline
-        } catch let error as NSError {
+        } catch let error {
             print(error.localizedDescription)
         }
         return nil

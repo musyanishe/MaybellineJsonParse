@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     
     @IBOutlet var collectionView: UICollectionView!
     
-    private let maybelline = NetworkMaybellineManager()
+    private var maybellineManager = NetworkMaybellineManager()
     private var maybellines: [MaybellineData] = []
     private let cellScale: CGFloat = 0.6
     
@@ -30,10 +30,13 @@ class ViewController: UIViewController {
         
         collectionView.dataSource = self
         
-        maybelline.fetchMaybellineInfo()
+//        maybellineManager.onCompletion = { maybelline in
+//
+//        }
+
+        maybellineManager.fetchMaybellineInfo()
     }
     
-
 }
 
 
