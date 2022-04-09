@@ -11,7 +11,7 @@
         <!--Maybelline New York-->
         <scene sceneID="qQ5-QI-Dst">
             <objects>
-                <viewController id="YVb-JX-06x" customClass="ViewController" customModule="MaybellineJsonParse" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController autoresizesArchivedViewToFullSize="NO" id="YVb-JX-06x" customClass="MaybellineCollectionViewController" customModule="MaybellineJsonParse" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="izV-Jl-Kvd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -93,6 +93,10 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="YVb-JX-06x" id="47h-sh-t70"/>
+                                    <outlet property="delegate" destination="YVb-JX-06x" id="BZI-Cd-TYb"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Q7e-84-mzm"/>
@@ -105,9 +109,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Maybelline New York" id="cuk-Xy-MlW"/>
-                    <connections>
-                        <outlet property="collectionView" destination="lLG-Q4-aZq" id="COj-nH-pEh"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sqm-j2-e9U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
