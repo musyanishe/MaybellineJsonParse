@@ -7,33 +7,64 @@
 
 import Foundation
 
-struct NetworkMaybellineManager {
-    
-    enum Result<Success, Error: Swift.Error> {
-        case success(Success)
-        case failure(Error)
-    }
+enum NetworkError: Error {
+    case invalidURL
+    case noData
+    case decodingError
+    case invalidStatusCode
+}
+
+class NetworkMaybellineManager {
     
     static let shared = NetworkMaybellineManager()
     
     let urlAPI = "https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline"
     
-    func fetchMaybellineInfo(from url: String, completion: @escaping (Result<[Maybelline], Error>) -> ()) {
-        guard let url = URL(string: urlAPI) else { return }
-        URLSession.shared.dataTask(with: url) { data, _, error in
+    private init() {}
+    
+    func fetchMaybellineInfo(from url: String, completion: @escaping (Result<[Maybelline], NetworkError>) -> ()) {
+        guard let url = URL(string: urlAPI) else {
+            completion(.failure(.invalidURL))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
-                completion(.failure(error!))
+                print(error?.localizedDescription ?? "No error description")
+                completion(.failure(.noData))
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200..<300).contains(httpResponse.statusCode) else {
+                completion(.failure(.invalidStatusCode))
                 return
             }
             do {
-                guard let maybs = try? JSONDecoder().decode([Maybelline].self, from: data) else {
-                    completion(.failure(error!))
-                    return
+                let maybs = try JSONDecoder().decode([Maybelline].self, from: data)
+                DispatchQueue.main.async {
+                    completion(.success(maybs))
+                    print(data)
                 }
-                completion(.success(maybs))
+            } catch {
+                    completion(.failure(.decodingError))
             }
         }.resume()
     }
     
-    init() {}
+    func fetchImage(from url: String, completion: @escaping(Result<Data, NetworkError>) -> Void) {
+        guard let url = URL(string: url) else {
+            completion(.failure(.invalidURL))
+            return
+        }
+        DispatchQueue.global().async {
+            guard let imageData = try? Data(contentsOf: url) else {
+                completion(.failure(.noData))
+                return
+            }
+            DispatchQueue.main.async {
+                completion(.success(imageData))
+            }
+        }
+    }
+    
 }

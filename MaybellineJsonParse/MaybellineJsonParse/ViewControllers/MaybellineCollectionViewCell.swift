@@ -9,26 +9,30 @@ import UIKit
 
 class MaybellineCollectionViewCell: UICollectionViewCell {
    
-    @IBOutlet var imageLink: UIImageView!
+    @IBOutlet var imageView: UIImageView! {
+        didSet {
+            imageView.layer.cornerRadius = 20
+        }
+    }
+    
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var priceLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
     
     func configure(with maybelline: Maybelline) {
         nameLabel.text = maybelline.name
-        priceLabel.text = maybelline.price
+        priceLabel.text = "\(maybelline.price ?? "Out of sale")"
         descriptionLabel.text = maybelline.description
         
-        guard let url = URL(string: maybelline.image_link ?? "") else { return }
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "No description found")
-                return
+        NetworkMaybellineManager.shared.fetchImage(from: maybelline.imageLink) { result in
+            switch result {
+            case .success(let imageData):
+                self.imageView.image = UIImage(data: imageData)
+            case .failure(let error):
+                print(error)
             }
-            DispatchQueue.main.async {
-                self.imageLink.image = UIImage(data: data)
-            }
-        }.resume()
+        }
     }
+    
     
 }
